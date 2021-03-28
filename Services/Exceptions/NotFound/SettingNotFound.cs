@@ -2,7 +2,7 @@
 
 namespace Services.Exceptions.NotFound
 {
-    class SettingNotFound : BaseNotFoundException
+    public class SettingNotFound : BaseNotFoundException
     {
         public SettingNotFound() : base()
         {

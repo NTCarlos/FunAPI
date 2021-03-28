@@ -6,7 +6,7 @@ namespace Services.Exceptions.BadRequest
     public class BaseNotFoundException : Exception
     {
         public int HttpCode { get { 
-                return Convert.ToInt32(HttpStatusCode.BadRequest); 
+                return Convert.ToInt32(HttpStatusCode.NotFound); 
             } 
         }
         public string CustomMessage { get; set; }

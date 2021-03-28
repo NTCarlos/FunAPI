@@ -11,7 +11,9 @@ namespace Services
     public interface IDefaultService
     {
         public Task<IEnumerable<Setting>> GetAll();
-        public Task Add(SettingDto setting);
+        public Task<Setting> Add(SettingDto setting);
         public Task<Setting> Get(int id);
+        public Task<Setting> Update(SettingDto setting, int id);
+        public Task<Setting> Delete(int id);
     }
 }

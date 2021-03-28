@@ -32,8 +32,22 @@ namespace FunApi.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SettingDto setting)
         {
-            await _defaultService.Add(setting);
-            return Created("GetAll", true);
+            var result = await _defaultService.Add(setting);
+            return Ok(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] SettingDto setting, int id)
+        {
+            var result = await _defaultService.Update(setting, id);
+            return Ok(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _defaultService.Delete(id);
+            return Ok(result);
         }
     }
 }
