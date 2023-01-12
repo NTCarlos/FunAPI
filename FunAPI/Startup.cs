@@ -40,7 +40,7 @@ namespace FunApi
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IDefaultService, DefaultService>();
             // Add DbContext
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite("Data Source=testdb.db"));
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite("Data Source=../db/testdb.db"));
             services.AddControllers();
             services.AddLogging();
             services.AddSwaggerGen(c =>
