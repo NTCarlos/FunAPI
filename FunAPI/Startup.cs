@@ -1,24 +1,13 @@
 using Data;
-using Data.Models;
 using Data.Repositories;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.Identity.Web;
 using Microsoft.OpenApi.Models;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace FunApi
 {
@@ -34,13 +23,14 @@ namespace FunApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            // Auth Off
+            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             //    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
             // Inject Services
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddTransient<IDefaultService, DefaultService>();
+            services.AddTransient<ISettingService, SettingService>();
             // Add DbContext
-            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite("Data Source=../db/testdb.db"));
+            services.AddDbContext<ApplicationDBContext>(options => options.UseSqlite(Configuration["ConnectionStrings:data"]));
             services.AddControllers();
             services.AddLogging();
             services.AddSwaggerGen(c =>
