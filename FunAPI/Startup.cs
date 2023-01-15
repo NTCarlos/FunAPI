@@ -23,9 +23,6 @@ namespace FunApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Auth Off
-            // services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            //    .AddMicrosoftIdentityWebApi(Configuration.GetSection("AzureAd"));
             // Inject Services
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<ISettingService, SettingService>();
@@ -52,9 +49,6 @@ namespace FunApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            //app.UseAuthentication();
-            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
