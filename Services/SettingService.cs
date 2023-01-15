@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public class DefaultService : IDefaultService
+    public class SettingService : ISettingService
     {
         private readonly IGenericRepository<Setting> _repo;
         private readonly ILogger _logger;
-        public DefaultService(IGenericRepository<Setting> repo, ILogger<DefaultService> logger)
+        public SettingService(IGenericRepository<Setting> repo, ILogger<SettingService> logger)
         {
             _repo = repo ?? throw new ArgumentNullException(nameof(repo));
             _logger = logger;

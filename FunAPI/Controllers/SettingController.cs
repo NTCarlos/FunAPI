@@ -8,15 +8,13 @@ namespace FunApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class DefaultController : ControllerBase
+    public class SettingController : ControllerBase
     {
-        private readonly IDefaultService _defaultService;
-        public DefaultController(IDefaultService defaultService)
+        private readonly ISettingService _defaultService;
+        public SettingController(ISettingService defaultService)
         {
             _defaultService = defaultService ?? throw new ArgumentNullException(nameof(defaultService));
-        }   
-        // The Web API will only accept tokens 1) for users, and 2) having the "access_as_user" scope for this API
-        //static readonly string[] scopeRequiredByApi = new string[] { "access_as_user" };
+        }
 
         [HttpGet("GetAll")]
         public async Task<IActionResult> GetAll()

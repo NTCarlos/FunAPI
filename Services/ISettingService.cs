@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public interface IDefaultService
+    public interface ISettingService
     {
         public Task<IEnumerable<Setting>> GetAll();
         public Task<Setting> Add(SettingDto setting);

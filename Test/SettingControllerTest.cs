@@ -15,11 +15,11 @@ using Xunit;
 
 namespace Test
 {
-    public class DefaultControllerTest
+    public class SettingControllerTest
     {
         private DbContextOptions<ApplicationDBContext> ContextOptions { get; }
 
-        public DefaultControllerTest()
+        public SettingControllerTest()
         {
             ContextOptions = new DbContextOptionsBuilder<ApplicationDBContext>()
                                      .UseInMemoryDatabase("TestDatabase")
@@ -54,8 +54,8 @@ namespace Test
                 Value="Some Useful Info"
             };
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (ObjectResult)mockController.Post(fakePostRequest).Result;
@@ -74,8 +74,8 @@ namespace Test
                 Value = "Hello Mate!"
             };
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (KeyAlreadyExistException)mockController.Post(fakePostRequest).Exception.InnerException;
@@ -88,8 +88,8 @@ namespace Test
         public void SuccessfullyGetAllMustReturnOk()
         {
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (ObjectResult)mockController.GetAll().Result;
@@ -105,8 +105,8 @@ namespace Test
             int id = 1;
 
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (ObjectResult)mockController.Get(id).Result;
@@ -126,8 +126,8 @@ namespace Test
                 Value = "Some Updated Info"
             };
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (ObjectResult)mockController.Put(fakePutRequest, id).Result;
@@ -147,8 +147,8 @@ namespace Test
                 Value = "Some Updated Info"
             };
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (SettingNotFound)mockController.Put(fakePutRequest, id).Exception.InnerException;
@@ -163,8 +163,8 @@ namespace Test
             // ARRANGE
             int id = 1;
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (ObjectResult)mockController.Delete(id).Result;
@@ -179,8 +179,8 @@ namespace Test
             // ARRANGE
             int id = 9999;
             using var context = new ApplicationDBContext(ContextOptions);
-            var mockService = new DefaultService(new GenericRepository<Setting>(context), new Mock<ILogger<DefaultService>>().Object);
-            var mockController = new DefaultController(mockService);
+            var mockService = new SettingService(new GenericRepository<Setting>(context), new Mock<ILogger<SettingService>>().Object);
+            var mockController = new SettingController(mockService);
 
             // ACT
             var taskResult = (SettingNotFound)mockController.Delete(id).Exception.InnerException;
